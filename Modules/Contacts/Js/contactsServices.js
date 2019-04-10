@@ -15,4 +15,9 @@ ContactsApp.service('contactsService', function($http) {
     }
 
     this.Contacts = {};
+
+    this.Pagin = {
+        currPage : 0,
+        totalPages : 0
+    };
   });

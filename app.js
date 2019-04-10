@@ -31,18 +31,12 @@ ContactsApp.controller('listController', function($scope, $http, contactsService
         
     vm.GetContacts = GetContacts;
     vm.NavigateToContact = NavigateToContact;
-    vm.SortBy = SortBy;
 
     vm.Contacts = [];
 
     vm.currPage = 0;
-    vm.pageSize = 5;
+    vm.pageSize = 10;
     vm.GetTotalPages = GetTotalPages;
-
-    function SortBy(sort){
-        $scope.reverse = ($scope.propertyName === propertyName) ? !$scope.reverse : false;
-        $scope.propertyName = propertyName;
-    }
 
     function GetTotalPages(filtered) 
     {
