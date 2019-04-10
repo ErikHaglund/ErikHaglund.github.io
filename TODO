@@ -6,3 +6,4 @@ Annan sortering för mobilvy
 Kodstandard: 
 flytta ut css till externa filer, 
 optimering: färre two-way bindings, hade velat ha mer backend för paging, sökning, hämta en.
+skriva om viss funktionalitet till direktiv för högre återanvändbarhet
