@@ -9,6 +9,10 @@ ContactsApp.config(function($routeProvider) {
             templateUrl : 'Modules/Contacts/Views/contact.html',
             controller  : 'viewController',
             controllerAs: 'vm'
+        }).when('/EpiUI', {
+            templateUrl : 'Modules/EpiUI/Views/EpiUI.html',
+            controller  : 'Modules/EpiUI/Js/EpiUIController',
+            controllerAs: 'vm'
         });
 });
 

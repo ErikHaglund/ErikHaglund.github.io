@@ -1,0 +1,243 @@
+<style>
+    .loader{
+    display: inline-block;
+    width: 128px;
+    height: 128px;
+
+    position: absolute;;
+    top:0px; bottom:0px; left:0px; right:0px;
+    margin: auto;
+}
+.loader:after {
+    content: " ";
+    display: block;
+    width: 92px;
+    height: 92px;
+    margin: 1px;
+    border-radius: 50%;
+    border: 5px solid black;
+    border-color: black transparent black transparent;
+    animation: loader 1.2s linear infinite;
+}
+@keyframes loader {
+    0% {
+    transform: rotate(0deg);
+    }
+    100% {
+    transform: rotate(360deg);
+    }
+}
+
+.button-back,
+.button-paging{
+    display: inline-block;
+    text-align: center;
+    /* border: solid 2px black; */
+    /* border-radius: 50px; */
+    margin-top:50px;
+    /* padding: 10px 30px 10px 30px; */
+    border-bottom: solid 2px black;
+    font-weight: bold;
+    font-size:18px;
+}
+
+    .contact-list-wrapper{
+        max-width:600px;
+        margin:auto;
+    }
+    .contact-list-wrapper .contact{
+        padding:20px;
+        border: solid 2px black;
+        border-radius: 90px;
+        position:relative;
+        margin: 20px auto 0px auto;
+    }
+    .contact-list-wrapper .contact .image{
+        max-width: 200px;
+        border-radius: 50%;
+    }
+    .contact-list-wrapper .contact .info{
+        display:inline-block;
+        position: absolute;
+        top:50%;
+        left:50%;
+        transform: translate(-50%, -50%);
+        text-align:center;
+    }
+    .contact-list-wrapper .contact .info .name{
+        width:100%;
+        font-weight: bold;
+        text-transform: capitalize;
+    }
+    .contact-list-wrapper .contact .info .location,
+    .contact-list-wrapper .contact .info .email,
+    .contact-list-wrapper .contact .info .phone,
+    .contact-list-wrapper .contact .info .cell{
+        display: inline-block;
+        font-size:24px;
+    }
+    .contact-list-wrapper .contact .info .email{
+        color:rgb(36, 36, 182);
+    }
+    .contact-list-wrapper .contact .info .phone{
+        color:green;
+    }
+    .contact-list-wrapper .contact .info .location{
+        color:rgba(205, 50, 52, 1);
+    }
+    .contact-list-wrapper .contact .info .cell{
+        color: black;
+    }
+
+    .icon:not(:first-of-type)
+    {
+        padding-left:10px;
+    }
+
+    .search-bar{
+        width:100%;
+        text-align:center;
+        padding-top:50px;
+        position: relative;
+        font-size:18px !important;
+    }
+    input{
+        outline-width: 0;
+    }
+    input:focus{
+        border-bottom: 2px solid black;
+    }
+
+    .search-input{
+        border-top:none;
+        border-right:none;
+        border-left:none;
+        border-bottom:solid 2px transparent;
+        width:80%;
+    }
+
+    .paging{
+        text-align:center;
+        padding-bottom:50px;
+    }
+
+    .filter-wrapper{
+        position:absolute;
+        right:0px;
+        background-color:white;
+        z-index: 2;
+        width:150px;
+        text-align: left;
+        padding-top:10px;
+    }
+
+    .filter-wrapper .filter-item{
+        border:solid 2px black;
+        line-height:1.7;
+    }
+
+    .filter-item:not(:first-of-type)
+    {
+        border-top:none;
+    }
+
+    .no-results{
+        font-size:16px;
+        font-weight: bold;
+        padding-top:20px;
+        text-align: center;
+    }
+
+.paging .current-page{
+    padding: 0px 10px 0px 10px;
+    font-weight: bold;
+}
+
+@media screen and (max-width: 992px) {
+    .contact-list-wrapper{
+        max-width: 800px;
+        margin:auto;
+    }
+
+    .contact-list-wrapper .contact .info .name{
+        font-size:45px;
+    }
+
+        .contact-list-wrapper .contact .info .location,
+    .contact-list-wrapper .contact .info .email,
+    .contact-list-wrapper .contact .info .phone,
+    .contact-list-wrapper .contact .info .cell{
+        font-size:40px;
+    }
+
+    .button-back,
+    .button-paging{
+        display: inline-block;
+        text-align: center;
+        margin-top:50px;
+        border-bottom: solid 4px black;
+        font-size:32px;
+    }
+    .paging .current-page{
+        font-size:24px;
+    }
+
+    .search-bar{
+        font-size:40px !important;
+    }
+
+    .filter-wrapper{
+        width:250px;
+    }
+
+    .search-input{
+        border-bottom:solid 4px transparent;
+    }
+
+    .contact-list-wrapper .contact .image{
+        max-width: 128px;
+    }
+
+    .no-results{
+        font-size:32px;
+        padding-top:50px;
+    }
+
+}
+</style>
+
+<!-- <div class="loader" ng-if="!vm.dataLoaded"></div>
+
+<div class="contact-list-wrapper" ng-if="vm.dataLoaded">
+    <div class="search-bar">
+        <input class="search-input" type="text" placeholder="Search" aria-label="Search" ng-model="vm.searchText">
+        <i class="fas fa-search" aria-hidden="true"></i>
+        <i class="fa fa-bars" aria-hidden="true" ng-click="vm.filterExpanded = !vm.filterExpanded" style="position:relative;">
+                <div class="filter-wrapper" ng-if="vm.filterExpanded">
+                        <div class="filter-item" ng-repeat="filter in vm.filters" ng-click="vm.Ordering = filter.Ordering;"> {{filter.Name}}</div>
+                    </div>
+        </i>
+
+    </div>
+    <div class="contact" ng-repeat="con in filtered = (vm.Contacts | orderBy:vm.Ordering | filter:{FullName : vm.searchText}) |
+    pagination: vm.currPage * vm.pageSize | limitTo: vm.pageSize " ng-href="#!contact/{{con.email}}" ng-click="vm.NavigateToContact(con.email);">
+        <image class="image" ng-src="{{con.picture.large}}"></image>
+        <span class="info">
+            <h3 class="name" ng-bind="con.FullName"></h3>
+            <a class="location icon"><i class="fas fa-map-marker-alt"></i></a>
+            <a class="email icon" ng-href="mailto:{{con.email}}" ng-click="$event.stopPropagation();"><i class="fas fa-at"></i></a>
+            <a class="phone icon" ng-href="tel:{{con.phone}}" ng-click="$event.stopPropagation();"><i class="fas fa-phone"></i></a>
+            <a class="cell icon" ng-href="tel:{{con.cell}}" ng-click="$event.stopPropagation();"><i class="fas fa-mobile-alt"></i></a>
+        </span>
+    </div>
+
+    <div class="paging" ng-if="filtered.length">
+        <div class="button-paging" ng-if="vm.currPage > 0" ng-click="vm.currPage=vm.currPage-1">PREV</div>
+        <span class="current-page">Page {{vm.currPage + 1}} of {{vm.GetTotalPages(filtered.length)}}</span>
+        <div class="button-paging" ng-if="vm.currPage < (filtered.length/vm.pageSize - 1)" ng-click="vm.currPage = vm.currPage+1">NEXT </div>
+    </div>
+
+    <div class="no-results" ng-if="!filtered.length">No contacts found.</div>
+</div> -->
+
+<div>EPI WEB UI</div>
